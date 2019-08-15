@@ -5,7 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyEmitter;
-
+import org.springframework.web.servlet.mvc.method.annotation.StreamingResponseBody;
 import lombok.extern.slf4j.Slf4j;
 
 @Controller
@@ -23,7 +23,7 @@ public class ResponseBodyEmitterController {
                 Thread.sleep(1000);
 
                 log.info("2222222");
-                responseBodyEmitter.send("2222222",MediaType.TEXT_PLAIN);
+                responseBodyEmitter.send("2222222", MediaType.TEXT_PLAIN);
                 Thread.sleep(1000);
 
                 responseBodyEmitter.complete();
@@ -33,6 +33,13 @@ public class ResponseBodyEmitterController {
             }
         }).start();
         return responseBodyEmitter;
+    }
+
+    @GetMapping("/download")
+    public StreamingResponseBody handleDownload() {
+        return (outputStream) -> {
+
+        };
     }
 
 }
