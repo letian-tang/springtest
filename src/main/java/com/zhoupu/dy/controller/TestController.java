@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.zhoupu.dy.mapping.ApiVersion;
 
+/**
+ * 测试RequestMappingHandlerMapping和ApiVersionRequestCondition
+ */
 @Controller
 @RequestMapping("/api/{version}")
 public class TestController {
