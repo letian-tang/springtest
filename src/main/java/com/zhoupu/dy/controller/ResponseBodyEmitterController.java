@@ -25,6 +25,7 @@ public class ResponseBodyEmitterController {
     private ThreadPoolTaskExecutor asyncTaskExecutor;
 
     /**
+     * 如果不设置为0，那么如果SseEmitter在指定的时间（AsyncSupportConfigurer设置的timeout,默认为30秒)未完成会抛出异常
      * 
      * @return
      * @throws InterruptedException
