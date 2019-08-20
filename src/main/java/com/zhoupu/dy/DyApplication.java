@@ -11,6 +11,7 @@ import com.zhoupu.dy.beanregister.beans.Student;
 import com.zhoupu.dy.beanregister.beans.Teacher;
 import com.zhoupu.dy.beanregister.beans.User;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 /**
  * 字体什么样子
@@ -21,6 +22,9 @@ public class DyApplication implements CommandLineRunner {
 
     @Autowired
     private ApplicationContext context;
+
+    @Autowired
+    private ThreadPoolTaskExecutor taskExecutor;
 
     public static void main(String[] args) {
         SpringApplication.run(DyApplication.class, args);
@@ -40,6 +44,9 @@ public class DyApplication implements CommandLineRunner {
 
         Foo foo = context.getBean(Foo.class);
         log.info("{}", foo);
+
+        log.info("taskExecutor={}", taskExecutor);
+
     }
 
 }
