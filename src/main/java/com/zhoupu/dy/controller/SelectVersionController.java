@@ -9,10 +9,12 @@ import com.zhoupu.dy.mapping.ApiVersion;
 
 /**
  * 测试RequestMappingHandlerMapping和ApiVersionRequestCondition
+ * 默认情况Mapping URL中不能有重复，但通过
  */
 @Controller
 @RequestMapping("/api/{version}")
-public class TestController {
+public class SelectVersionController {
+
 
     @GetMapping("/user/{id}")
     @ApiVersion(2)
