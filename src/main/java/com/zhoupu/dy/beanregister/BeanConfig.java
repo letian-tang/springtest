@@ -10,7 +10,7 @@ import com.zhoupu.dy.beanregister.beans.Teacher;
 public class BeanConfig {
 
 
-    @Bean
+    @Bean("studentFactoryBean")
     public StudentFactoryBean studentFactoryBean() {
         return new StudentFactoryBean();
     }
