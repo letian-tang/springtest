@@ -35,6 +35,9 @@ public class BeanRegisterTests {
 
         IDto dtoImpl = context.getBean("dtoImpl", IDto.class);
         log.info("{}", dtoImpl.getName());
+
+        IDto idtoProxyFactoryBean = context.getBean("idtoProxyFactoryBean", IDto.class);
+        log.info("{}", idtoProxyFactoryBean.getName());
     }
 
 
