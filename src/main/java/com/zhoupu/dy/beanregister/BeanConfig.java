@@ -1,9 +1,11 @@
 package com.zhoupu.dy.beanregister;
 
 import java.lang.reflect.Method;
+
 import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
 import org.springframework.aop.MethodBeforeAdvice;
+import org.springframework.aop.aspectj.annotation.AspectJProxyFactory;
 import org.springframework.aop.framework.ProxyFactory;
 import org.springframework.aop.framework.ProxyFactoryBean;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,10 +13,13 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+
+import com.zhoupu.dy.aop.MyAspect;
 import com.zhoupu.dy.aop.Pojo;
 import com.zhoupu.dy.aop.SimplePojo;
 import com.zhoupu.dy.beanregister.beans.DtoImpl;
 import com.zhoupu.dy.beanregister.beans.Teacher;
+
 import lombok.extern.slf4j.Slf4j;
 
 @Configuration
@@ -25,10 +30,16 @@ public class BeanConfig {
     @Autowired
     private ApplicationContext context;
 
+
+    @Bean("studentFactoryBean")
+    public StudentFactoryBean studentFactoryBean() {
+        return new StudentFactoryBean();
+    }
+
     @Bean("simplePojoProxyFactory")
     public ProxyFactory simplePojo() {
         ProxyFactory factory = new ProxyFactory(new SimplePojo("SimplePojo"));
-        //factory.addInterface(Pojo.class);
+        // factory.addInterface(Pojo.class);
         factory.addAdvice(new MethodInterceptor() {
             @Override
             public Object invoke(MethodInvocation invocation) throws Throwable {
@@ -38,10 +49,6 @@ public class BeanConfig {
         return factory;
     }
 
-    @Bean("studentFactoryBean")
-    public StudentFactoryBean studentFactoryBean() {
-        return new StudentFactoryBean();
-    }
 
     @Bean("idtoProxyFactoryBean")
     public ProxyFactoryBean getProxyFactoryBean() {
@@ -56,4 +63,12 @@ public class BeanConfig {
         return proxyFactoryBean;
     }
 
+    @Bean("aspectJProxyFactory")
+    public AspectJProxyFactory getAspectJProxyFactory() {
+        Pojo pojo = new SimplePojo("AspectJProxyFactory");
+        AspectJProxyFactory proxyFactory = new AspectJProxyFactory(pojo);
+        proxyFactory.addAspect(MyAspect.class);
+        proxyFactory.setProxyTargetClass(true);//是否需要使用CGLIB代理
+        return proxyFactory;
+    }
 }
