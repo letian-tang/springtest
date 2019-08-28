@@ -2,11 +2,16 @@ package com.zhoupu.dy.beanregister;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.aop.framework.ProxyFactory;
+import org.springframework.aop.framework.ProxyFactoryBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.junit4.SpringRunner;
+import com.zhoupu.dy.aop.NopInterceptor;
+import com.zhoupu.dy.aop.Pojo;
+import com.zhoupu.dy.aop.SimplePojo;
 import com.zhoupu.dy.beanregister.beans.*;
 import lombok.extern.slf4j.Slf4j;
 
@@ -35,10 +40,28 @@ public class BeanRegisterTests {
 
         IDto dtoImpl = context.getBean("dtoImpl", IDto.class);
         log.info("{}", dtoImpl.getName());
+        ProxyFactory simplePojo2 = context.getBean("simplePojo2", ProxyFactory.class);
+        ((Pojo)simplePojo2.getProxy()).foo();
 
-        IDto idtoProxyFactoryBean = context.getBean("idtoProxyFactoryBean", IDto.class);
-        log.info("{}", idtoProxyFactoryBean.getName());
+        IDto dto = context.getBean("idtoProxyFactoryBean", IDto.class);
+        ProxyFactoryBean proxyFactoryBean =
+                context.getBean("&idtoProxyFactoryBean", ProxyFactoryBean.class);
+        log.info("----1----{}", ((IDto) proxyFactoryBean.getObject()).getName());
+        log.info("----2----{}", dto.getName());
+
+        ProxyFactory proxyFactory = context.getBean("simplePojoProxyFactory", ProxyFactory.class);
+        Pojo pojo = (Pojo) proxyFactory.getProxy();
+        pojo.foo();
+
     }
 
+    @Test
+    public void proxyFactoryTest() {
+        ProxyFactory factory = new ProxyFactory(new SimplePojo("asdfasdf"));
+        factory.addInterface(Pojo.class);
+        factory.addAdvice(new NopInterceptor());
+        Pojo pojo = (Pojo) factory.getProxy();
+        pojo.foo();
+    }
 
 }
