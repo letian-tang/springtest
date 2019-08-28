@@ -13,4 +13,7 @@ spring支持的AOP的方式有：AspectJ,ProxyFactoryBean,ProxyFactory
 其中：  
 AspectJ是目前大家最常用的 起到集成AspectJ和Spring;  
 ProxyFactoryBean是将我们的AOP和IOC融合起来;  
-ProxyFactory则是只能通过代码硬编码进行编写一般都是给spring自己使用
+ProxyFactory则是只能通过代码硬编码进行编写一般都是给spring自己使用;  
+也就是，ProxyFactoryBean可以直接registerSingleton到beanFactory，getBean值可以取到  
+原对象，而ProxyFactory registerSingleton到beanFactory取到的还是ProxyFactory对象需要  
+getProxy才能获得原对象
