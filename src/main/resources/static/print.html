@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<script language="javascript" src="LodopFuncs.js"></script>
+</head>
+
+<body>
+
+<div id="textarea01">
+	<div style="width: 200px;text-align: center;font-size: 36px;margin: auto">销售单</div>
+<table border="1" style="border-collapse:collapse;border:solid 1px;width: 200px;" bordercolor="#000000">
+  <tr>
+    <td>条码</td><td>条码1</td><td>条码2</td><td>条码3</td>
+  </tr>
+	<tr>
+		<td heigth="130">啊三大发射点发撒旦发射点发阿萨德发送方</td><td>条码1</td><td>条码2</td><td>条码3</td>
+	</tr>
+</table>
+	<div>
+		<div>
+			<div style="float: left;width: 400px;">地址：南京市雨花台区软件大道雨花客厅4幢13楼啊</div>
+			<div style="float: left;margin-left: 20px;">电话：25695636大道</div>
+		</div>
+	</div>
+</div>
+<br><br>
+<div>
+<a href="javascript:;" onclick="javascript:myAddHtml();">打印预览</a>
+</div>
+<script language="javascript" type="text/javascript">
+	var LODOP; //声明为全局变量
+	function myAddHtml() {
+		LODOP=getLodop();
+		LODOP.PRINT_INIT("");
+		LODOP.ADD_PRINT_HTM(0,0,"100%","100%",document.getElementById("textarea01").innerHTML);
+		LODOP.PREVIEW();
+	};
+</script>
+
+
+</body>
+</html>

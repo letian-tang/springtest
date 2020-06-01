@@ -22,9 +22,9 @@ public class SelectVersionController {
         return "中午";
     }
 
-    @GetMapping("/user/{id}")
-    @ApiVersion(4)
-    public @ResponseBody String getUserV4(@PathVariable("id") String id) {
-        return "下午";
-    }
+//    @GetMapping("/user/{id}")
+//    @ApiVersion(4)
+//    public @ResponseBody String getUserV4(@PathVariable("id") String id) {
+//        return "下午";
+//    }
 }

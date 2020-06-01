@@ -1,6 +1,6 @@
 package com.zhoupu.dy.method;
 
 public interface C1 {
-    <T> T getValue(Object o);
+    <T> T getValue(String o);
 }
 

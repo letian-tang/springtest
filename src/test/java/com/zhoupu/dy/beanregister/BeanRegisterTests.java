@@ -1,5 +1,6 @@
 package com.zhoupu.dy.beanregister;
 
+import com.zhoupu.common.ApplicationContextUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.aop.framework.ProxyFactory;
@@ -37,6 +38,13 @@ public class BeanRegisterTests {
 
         Foo foo = context.getBean(Foo.class);
         log.info("{}", foo);
+
+
+    }
+
+    @Test
+    public void beanTest2() {
+        ApplicationContextUtils.getApplicationContext().getAutowireCapableBeanFactory();
 
 
     }

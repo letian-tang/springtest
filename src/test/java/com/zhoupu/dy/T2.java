@@ -58,4 +58,30 @@ public class T2 {
         }
     }
 
+    @Test
+    public void t4(){
+        String s = "23r";
+        try{
+            Integer ss = Integer.parseInt(s);
+            System.out.println(ss);
+        }catch (NullPointerException e){
+            System.out.println("111");
+        }finally {
+            System.out.println("2222");
+        }
+
+    }
+
+
+    private static String getExecutingMethodName() {
+        StackTraceElement[] stackTrace = Thread.currentThread().getStackTrace();
+        StackTraceElement e = stackTrace[2];
+        return e.getMethodName();
+    }
+
+    @Test
+    public void t5(){
+        System.out.println(getExecutingMethodName());
+    }
+
 }

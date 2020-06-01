@@ -6,6 +6,7 @@ springbean注入方式
 1. new ProxyFactoryBean
 1. BeanFactoryPostProcessor 使用BeanDefinitionBuilder.genericBeanDefinition(类.class)方式
 1. BeanDefinitionRegistryPostProcessor 使用BeanDefinitionBuilder.genericBeanDefinition(类.class)方式
+1. applicationContext.getDefaultListableBeanFactory
 
 SpringAOP
 AspectJ、ProxyFactory、ProxyFactoryBean  
